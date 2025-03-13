@@ -2,3 +2,4 @@ Django==5.1.7
 pillow==11.1.0
 django-phonenumber-field==8.0.0
 phonenumbers==9.0.0
+python-dotenv==1.0.1
