@@ -1,55 +1,39 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    {% if category %}{{ category.name }}{% else %}Товары{% endif %}
-{% endblock %}
+{% block title %}Товары{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>{% if category %}{{ category.name }}{% else %}Все товары{% endif %}</h1>
-    <div class="categories">
-        <h3>Категории</h3>
-        <ul>
-            <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url 'product_list' %}">Все</a>
-            </li>
-            {% for c in categories %}
-            <li {% if c.slug == category.slug %}class="selected"{% endif %}>
-                <a href="{% url 'product_list_by_category' c.slug %}">{{ c.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="products">
-        {% for product in products %}
-        <div class="product">
-            <a href="{% url 'product_detail' product.id product.slug %}">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            </a>
-            <a href="{% url 'product_detail' product.id product.slug %}">{{ product.name }}</a>
-            <p>{{ product.price }} руб.</p>
-        </div>
+<h1>Товары</h1>
+
+<!-- Форма поиска -->
+<form method="get" action="{% url 'product_list' %}">
+    <input type="text" name="search" placeholder="Поиск..." value="{{ request.GET.search }}">
+    <button type="submit">Найти</button>
+</form>
+
+<!-- Фильтр по категориям -->
+<div class="categories">
+    <h3>Категории</h3>
+    <ul>
+        <li {% if not request.GET.category %}class="active"{% endif %}>
+            <a href="{% url 'product_list' %}">Все</a>
+        </li>
+        {% for category in categories %}
+        <li {% if request.GET.category == category.id|stringformat:"s" %}class="active"{% endif %}>
+            <a href="?category={{ category.id }}">{{ category.name }}</a>
+        </li>
         {% endfor %}
-    </div>
+    </ul>
 </div>
-{% endblock %}
 
-
-{% extends 'base.html' %}
-
-{% block title %}{{ product.name }}{% endblock %}
-
-{% block content %}
-<div class="container">
-    <h1>{{ product.name }}</h1>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-    <p>{{ product.description }}</p>
-    <p>Цена: {{ product.price }} руб.</p>
-    <p>На складе: {{ product.stock }} шт.</p>
-    <form action="{% url 'cart_add' product.id %}" method="post">
-        {% csrf_token %}
-        {{ cart_product_form }}
-        <input type="submit" value="Добавить в корзину">
-    </form>
+<!-- Список товаров -->
+<div class="products">
+    {% for product in products %}
+    <div class="product">
+        <h2><a href="{% url 'product_detail' product.id product.slug %}">{{ product.name }}</a></h2>
+        <p>{{ product.description }}</p>
+        <p>Цена: {{ product.price }} руб.</p>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
