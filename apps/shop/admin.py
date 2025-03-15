@@ -23,7 +23,7 @@ class CartItemInline(admin.TabularInline):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ("user", "created_at", "total_items", "total_price")
+    list_display = ("user", "total_items", "total_price")
     inlines = [CartItemInline]
 
     def total_items(self, obj):

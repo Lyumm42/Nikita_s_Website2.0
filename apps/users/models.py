@@ -7,7 +7,11 @@ class User(AbstractUser):
         ('admin', 'Администратор'),
     )
     email = models.EmailField(unique=True)
-    role = models.CharField(max_length=10, choices=USER_ROLES, default='customer')
+    role = models.CharField(max_length=8, choices=USER_ROLES, default='customer')
+
+    def __str__(self):
+        return self.username
 
     class Meta:
         verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
