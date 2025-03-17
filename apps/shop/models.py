@@ -57,10 +57,14 @@ class Cart(models.Model):
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f"{self.count} x {self.product.name} в корзине {self.cart.user.username}"
+        return f"{self.quantity} x {self.product.name} в корзине {self.cart.user.username}"
+
+    def total_price(self):
+        return self.quantity * self.product.price
+
 
     class Meta:
         ordering = ['cart']

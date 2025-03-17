@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92778da2-af18-4f29-b1d6-0694dd1a5f1a" name="Changes" comment="" />
+    <list default="true" id="92778da2-af18-4f29-b1d6-0694dd1a5f1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/nikita_s_website2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nikita_s_website2.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/templates/orders/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/templates/orders/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/reviews/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/reviews/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/reviews/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/reviews/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/reviews/templates/reviews/reviews.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/reviews/templates/reviews/reviews.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/reviews/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/reviews/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/reviews/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/reviews/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/templates/shop/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/templates/shop/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/templates/shop/product_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/templates/shop/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/templates/shop/shop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,16 +50,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
-    "last_opened_file_path": "C:/Users/Compkg/PycharmProjects/nikita_s_website2.0",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Compkg/PycharmProjects/nikita_s_website2.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Compkg\PycharmProjects\nikita_s_website2.0" />

@@ -21,6 +21,6 @@ def product_list(request):
 
     return render(
         request,
-        'shop/product_list.html',
+        'shop/shop.html',
         {'products': products, 'categories': categories}
     )

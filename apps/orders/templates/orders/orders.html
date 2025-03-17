@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Оформление заказа</title>
+    <style>
+        .order-form { max-width: 600px; margin: 20px auto; }
+        .form-field { margin-bottom: 15px; }
+        .payment-method { list-style: none; padding: 0; }
+    </style>
 </head>
 <body>
+    <h1>Оформление заказа</h1>
 
+    <div class="order-form">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-field">
+                <label>ФИО:</label>
+                {{ form.full_name }}
+            </div>
+
+            <div class="form-field">
+                <label>Телефон:</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="form-field">
+                <label>Адрес:</label>
+                {{ form.address }}
+            </div>
+
+            <div class="form-field">
+                <label>Способ оплаты:</label>
+                <ul class="payment-method">
+                    {{ form.payment_method }}
+                </ul>
+            </div>
+
+            <h3>Ваш заказ:</h3>
+            <ul>
+                {% for item in cart.products.all %}
+                <li>{{ item.product.name }} ({{ item.quantity }} шт.)</li>
+                {% endfor %}
+            </ul>
+            <p>Итого: {{ cart.total_price }} сом.</p>
+
+            <button type="submit">Оплатить</button>
+        </form>
+    </div>
 </body>
 </html>

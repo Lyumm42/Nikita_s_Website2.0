@@ -1,39 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Товары{% endblock %}
+{% block title %}Каталог товаров{% endblock %}
 
 {% block content %}
-<h1>Товары</h1>
+<section class="shop_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>Каталог товаров</h2>
+        </div>
 
-<!-- Форма поиска -->
-<form method="get" action="{% url 'product_list' %}">
-    <input type="text" name="search" placeholder="Поиск..." value="{{ request.GET.search }}">
-    <button type="submit">Найти</button>
-</form>
+        <!-- Filters and search -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-3">
+                <form method="get" class="form-inline">
+                    <div class="input-group w-100">
+                        <input type="text" name="search" class="form-control"
+                               placeholder="Поиск по названию или описанию"
+                               value="{{ request.GET.search }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="categories">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Категории
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item {% if not request.GET.category %}active{% endif %}"
+                               href="{% url 'product_list' %}">Все категории</a>
+                            {% for category in categories %}
+                            <a class="dropdown-item {% if request.GET.category == category.id|stringformat:'s' %}active{% endif %}"
+                               href="?category={{ category.id }}">{{ category.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- Фильтр по категориям -->
-<div class="categories">
-    <h3>Категории</h3>
-    <ul>
-        <li {% if not request.GET.category %}class="active"{% endif %}>
-            <a href="{% url 'product_list' %}">Все</a>
-        </li>
-        {% for category in categories %}
-        <li {% if request.GET.category == category.id|stringformat:"s" %}class="active"{% endif %}>
-            <a href="?category={{ category.id }}">{{ category.name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-
-<!-- Список товаров -->
-<div class="products">
-    {% for product in products %}
-    <div class="product">
-        <h2><a href="{% url 'product_detail' product.id product.slug %}">{{ product.name }}</a></h2>
-        <p>{{ product.description }}</p>
-        <p>Цена: {{ product.price }} руб.</p>
+        <!-- List of products -->
+        <div class="row">
+            {% for product in products %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="box">
+                    <a href="{% url 'product_detail' product.id product.slug %}">
+                        <div class="img-box">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+                            {% else %}
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid" alt="Нет изображения">
+                            {% endif %}
+                        </div>
+                        <div class="detail-box">
+                            <h6>{{ product.name }}</h6>
+                            <p class="text-muted small">{{ product.category.name }}</p>
+                            <h6>{{ product.price }} сом.</h6>
+                        </div>
+                        {% if product.is_new %}
+                        <div class="new-badge">
+                            <span>NEW</span>
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">Товары не найдены</div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-</div>
+</section>
 {% endblock %}

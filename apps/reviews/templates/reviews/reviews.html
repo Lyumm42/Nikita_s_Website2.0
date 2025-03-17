@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product Reviews</title>
+    <style>
+        .review { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; }
+        .rating { color: #ff9900; font-weight: bold; }
+        .meta { color: #666; font-size: 0.9em; }
+    </style>
 </head>
 <body>
+    <h1>Customer Reviews</h1>
 
+    {% for review in reviews %}
+    <div class="review">
+        <div class="meta">
+            <strong>{{ review.user.username }}</strong> reviewed
+            <em>{{ review.product.name }}</em> on
+            {{ review.created_at|date:"M d, Y H:i" }}
+        </div>
+        <div class="rating">Rating: {{ review.rating }}/5</div>
+        <p>{{ review.text }}</p>
+    </div>
+    {% empty %}
+    <p>No reviews yet.</p>
+    {% endfor %}
 </body>
 </html>

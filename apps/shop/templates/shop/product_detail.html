@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<section class="product_detail_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-6">
+                <div class="product_image">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+                    {% else %}
+                    <img src="{% static 'images/no-image.png' %}" class="img-fluid" alt="Нет изображения">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="col-md-6">
+                <div class="product_info">
+                    <h1>{{ product.name }}</h1>
+                    <p class="text-muted">{{ product.category.name }}</p>
+                    <h2>{{ product.price }} руб.</h2>
+
+                    <!-- Product Description -->
+                    <div class="description mt-4">
+                        <h3>Описание</h3>
+                        <p>{{ product.description }}</p>
+                    </div>
+
+                    <!-- Add to cart button -->
+                    <div class="add_to_cart mt-4">
+                        <form action="{% url 'add_to_cart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <input type="number" name="quantity" class="form-control" value="1" min="1" max="10">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-shopping-cart"></i> Добавить в корзину
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Additional information -->
+                    <div class="additional_info mt-4">
+                        <h3>Дополнительная информация</h3>
+                        <ul>
+                            <li><strong>Артикул:</strong> {{ product.sku }}</li>
+                            <li><strong>В наличии:</strong> {{ product.stock }} шт.</li>
+                            <li><strong>Рейтинг:</strong> {{ product.rating }}/5</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related products -->
+<section class="related_products_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>Похожие товары</h2>
+        </div>
+        <div class="row">
+            {% for related_product in related_products %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="box">
+                    <a href="{% url 'product_detail' related_product.id related_product.slug %}">
+                        <div class="img-box">
+                            {% if related_product.image %}
+                            <img src="{{ related_product.image.url }}" class="img-fluid" alt="{{ related_product.name }}">
+                            {% else %}
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid" alt="Нет изображения">
+                            {% endif %}
+                        </div>
+                        <div class="detail-box">
+                            <h6>{{ related_product.name }}</h6>
+                            <h6>{{ related_product.price }} руб.</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

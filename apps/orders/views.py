@@ -1,10 +1,40 @@
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from apps.shop.models import Cart
+from apps.shop.models import Cart, CartItem
+from .forms import OrderForm
+from .models import Order, OrderItem
 
 
 @login_required
-def process_payment(request):
-    cart = Cart.objects.all(user=request.user)
-    cart.products.clear()
-    return redirect('order_success')
+def create_order(request):
+    cart = Cart.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.total_price = cart.total_price()  # Предполагается метод total_price в Cart
+            order.save()
+
+            # Добавляем товары из корзины в OrderItem
+            for item in cart.products.all():
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity
+                )
+
+            cart.products.clear()
+
+            return redirect('order_success')
+    else:
+        form = OrderForm()
+
+    return render(request, 'orders/orders.html', {
+        'form': form,
+        'cart': cart
+    })
+
+
+def order_success(request):
+    return render(request, 'orders/success.html')
