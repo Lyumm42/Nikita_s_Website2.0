@@ -17,8 +17,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 # Application definition
 MY_APPS = [
-    'apps.orders'
-    'apps.reviews'
+    'apps.orders',
+    'apps.reviews',
     'apps.shop',
     'apps.users',
 ]
