@@ -23,7 +23,7 @@
                 <div class="product_info">
                     <h1>{{ product.name }}</h1>
                     <p class="text-muted">{{ product.category.name }}</p>
-                    <h2>{{ product.price }} руб.</h2>
+                    <h2>{{ product.price }} сом.</h2>
 
                     <!-- Product Description -->
                     <div class="description mt-4">
@@ -46,48 +46,11 @@
                         </form>
                     </div>
 
-                    <!-- Additional information -->
-                    <div class="additional_info mt-4">
-                        <h3>Дополнительная информация</h3>
-                        <ul>
-                            <li><strong>Артикул:</strong> {{ product.sku }}</li>
-                            <li><strong>В наличии:</strong> {{ product.stock }} шт.</li>
-                            <li><strong>Рейтинг:</strong> {{ product.rating }}/5</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
-<!-- Related products -->
-<section class="related_products_section layout_padding">
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h2>Похожие товары</h2>
-        </div>
-        <div class="row">
-            {% for related_product in related_products %}
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="box">
-                    <a href="{% url 'product_detail' related_product.id related_product.slug %}">
-                        <div class="img-box">
-                            {% if related_product.image %}
-                            <img src="{{ related_product.image.url }}" class="img-fluid" alt="{{ related_product.name }}">
-                            {% else %}
-                            <img src="{% static 'images/no-image.png' %}" class="img-fluid" alt="Нет изображения">
-                            {% endif %}
-                        </div>
-                        <div class="detail-box">
-                            <h6>{{ related_product.name }}</h6>
-                            <h6>{{ related_product.price }} руб.</h6>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+
 {% endblock %}

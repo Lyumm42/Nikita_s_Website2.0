@@ -20,7 +20,7 @@ class Product(models.Model):
     objects = models.Manager()
     description = models.TextField()
     name = models.CharField(
-        max_length=15,
+        max_length=42,
         verbose_name="Название продукта"
     )
     price = models.FloatField(
